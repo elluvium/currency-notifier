@@ -15,27 +15,26 @@ func getCurrencies(url string) ([]byte, error) {
 	return resp.Body(), nil
 }
 
-func jsonParser() error {
+func jsonParser() (*models.CurrencyState, error) {
 	var state models.CurrencyState
 
 	response, err := getCurrencies("http://resources.finance.ua/ua/public/currency-cash.json")
 	if err != nil {
-		return nil
+		return nil, err
 	}
 
 	err = json.Unmarshal([]byte(response), &state)
 	if err != nil {
-		return nil
+		return nil, err
 	}
 
-
-	return nil
+	return &state, nil
 }
 
-func StateInitializer() error {
-	err := jsonParser()
+func StateInitializer() (*models.CurrencyState, error) {
+	currencies, err := jsonParser()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return currencies, nil
 }
