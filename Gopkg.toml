@@ -2,6 +2,10 @@
   name = "gopkg.in/resty.v1"
   version = "=v1.9.0"
 
+[[override]]
+  name = "github.com/go-telegram-bot-api/telegram-bot-api"
+  revision = "ec221ba9ea458cd5386c35dd90af04b8a895f8eb"
+
 [prune]
   go-tests = true
   non-go = true
