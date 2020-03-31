@@ -1,13 +1,14 @@
 package currency
 
 import (
-"gopkg.in/resty.v1"
+	"currency-notifier/models"
 	"encoding/json"
-	"ua-currency-notifier/models"
+	"github.com/go-resty/resty/v2"
 )
 
 func getCurrencies(url string) ([]byte, error) {
-	resp, err := resty.R().Get(url)
+	client := resty.New()
+	resp, err := client.R().Get(url)
 	if err != nil {
 		return nil, err
 	}

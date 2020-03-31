@@ -27,7 +27,6 @@ func BotInit(token string) (tgbotapi.BotAPI, tgbotapi.UpdatesChannel, error) {
 
 func Run(bot tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) error {
 	for update := range updates {
-		// Создав структуру - можно её отправить обратно боту
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
 		msg.ReplyToMessageID = update.Message.MessageID
 		bot.Send(msg)
